@@ -38,4 +38,5 @@ public function update(PostRequest $request, Post $post)
     $post->fill($input_post)->save();
     return redirect('/posts/' . $post->id);
 }
+
 }
