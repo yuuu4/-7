@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
@@ -6,6 +6,10 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     </head>
+    <x-app-layout>
+    <x-slot name="header">
+        {{ __('Index') }}
+    </x-slot>
     <body>
         <h1>Blog Name</h1>
         <a href="/posts/create">[create]</a>
@@ -24,8 +28,11 @@
                 </div>
             @endforeach
         </div>
-        <div class='paginate'>{{$posts->links()}}</div>
-        <script>
+      
+        <div class='paginate'>
+            {{ $posts->links() }}
+        </div>
+         <script>
         function deletePost(id){
             'use strict'
             if(confirm('削除すると復元できません。\n本当に削除しますか？')){
@@ -33,5 +40,8 @@
             }
         }
         </script>
+        
+        ログインユーザー：{{ Auth::user()->name }}
     </body>
+   </x-app-layout>
 </html>
